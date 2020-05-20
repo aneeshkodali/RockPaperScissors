@@ -79,7 +79,7 @@ header > h1 {
 /* Style images */
 .choices {
     text-align: center;
-    margin: 50px 0;
+    margin-top: 50px;
 }
 .choice {
     display: inline-block; /* makes horizontal */
@@ -93,5 +93,16 @@ header > h1 {
 /* when hover over choice */
 .choice:hover {
     cursor: pointer; /* cursor changes */
-    background: #24272E;
+    /* background: #24272E; */
+    background: red;
+}
+
+/* action message */
+#action-message {
+    text-align: center;
+    color: white;
+    font-family: Asap, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
 }
