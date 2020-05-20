@@ -29,6 +29,10 @@ function convertToWord(letter) {
 
 // function for when user wins
 function win(userChoice, computerChoice) {
+
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallComputerWord = "comp".fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);
     
     // increase user score
     userScore++;
@@ -37,14 +41,24 @@ function win(userChoice, computerChoice) {
     // update computer score element on page
     computerScore_span.innerHTML = computerScore;
     // update the result message element on page 
-    const smallUserWord = "user".fontsize(3).sub();
-    const smallComputerWord = "comp".fontsize(3).sub();
     result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallComputerWord}. You win! :)`;
+
+    // add green glow class to div that user clicked on
+    userChoice_div.classList.add('green-glow');
+    // set timeout so green glow goes away after some time
+    // ==> setTimeout(function, time (ms) to wait before doing function)
+    // in this case, the 'function' is to remove the green-glow from class list
+    setTimeout(() => userChoice_div.classList.remove('green-glow'), 300);
 }
 
 // function for when user loses
 function lose(userChoice, computerChoice) {
 
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallComputerWord = "comp".fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);
+    
+    
     // increase computer score
     computerScore++;
     // update user score element on page
@@ -52,18 +66,36 @@ function lose(userChoice, computerChoice) {
     // update computer score element on page
     computerScore_span.innerHTML = computerScore;
     // update the result message element on page 
-    const smallUserWord = "user".fontsize(3).sub();
-    const smallComputerWord = "comp".fontsize(3).sub();
     result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallComputerWord}. You lose :(`;
+
+    // add red glow class to div that user clicked on
+    userChoice_div.classList.add('red-glow');
+    // set timeout so red glow goes away after some time
+    // ==> setTimeout(function, time (ms) to wait before doing function)
+    // in this case, the 'function' is to remove the red-glow from class list
+    setTimeout(() => userChoice_div.classList.remove('red-glow'), 300);
+
 
 }
 
 // function for draw
 function draw(userChoice, computerChoice) {
-    // update the result message element on page 
+
     const smallUserWord = "user".fontsize(3).sub();
     const smallComputerWord = "comp".fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);
+    
+
+    // update the result message element on page 
     result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} equals ${convertToWord(computerChoice)}${smallComputerWord}. It's a draw`;
+
+    // add gray glow class to div that user clicked on
+    userChoice_div.classList.add('gray-glow');
+    // set timeout so gray glow goes away after some time
+    // ==> setTimeout(function, time (ms) to wait before doing function)
+    // in this case, the 'function' is to remove the gray-glow from class list
+    setTimeout(() => userChoice_div.classList.remove('gray-glow'), 300);
+
 
 }
 
@@ -98,17 +130,11 @@ function game(userChoice) {
 function main () {
 
     //Add event listeners
-    rock_div.addEventListener('click', function() {
-        game("r");
-    })
+    rock_div.addEventListener('click', () => game("r"));
 
-    paper_div.addEventListener('click', function() {
-        game("p");
-    })
+    paper_div.addEventListener('click', () => game("p"));
 
-    scissors_div.addEventListener('click', function() {
-        game("s");
-    })
+    scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
