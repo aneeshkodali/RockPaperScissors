@@ -9,6 +9,7 @@ const result_p = document.querySelector('.result > p');
 const rock_div = document.getElementById('r');
 const paper_div = document.getElementById('p');
 const scissors_div = document.getElementById('s');
+
 const lizard_div = document.getElementById('l');
 const spock_div = document.getElementById('sp');
 
@@ -17,9 +18,11 @@ const choices_div = document.getElementById('choices');
 // computer choice function - random choice
 function getComputerChoice() {
     const choices = [
-        { choice: 'r', beats: 's', losesTo: 'p' },
-        { choice: 'p', beats: 'r', losesTo: 's' },
-        { choice: 's', beats: 'p', losesTo: 'r' }
+        { choice: 'r', beats: ['s', 'l'], losesTo: ['p', 'sp'] },
+        { choice: 'p', beats: ['r', 'sp'], losesTo: ['s', 'l'] },
+        { choice: 's', beats: ['p', 'l'], losesTo: ['r', 'sp'] },
+        { choice: 'l', beats: ['p', 'sp'], losesTo: ['r', 's'] },
+        { choice: 'sp', beats: ['r', 's'], losesTo: ['p', 'l'] }
     ];
 
     // generate random number
@@ -39,6 +42,12 @@ function convertToWord(letter) {
     }
     if (letter === 's') {
         return 'Scissors';
+    }
+    if (letter === 'l') {
+        return 'Lizard';
+    }
+    if (letter === 'sp') {
+        return 'Spock';
     }
 }
 
@@ -129,9 +138,9 @@ function game(userChoice) {
     //         draw(userChoice, computerChoice.choice);
     //         break;
     // }
-    if (userChoice === computerChoice.losesTo) {
+    if (computerChoice.losesTo.includes(userChoice)) {
         win(userChoice, computerChoice.choice);
-    } else if (userChoice === computerChoice.beats) {
+    } else if (computerChoice.beats.includes(userChoice)) {
         lose(userChoice, computerChoice.choice);
     } else {
         draw(userChoice, computerChoice.choice);
@@ -146,6 +155,9 @@ function main() {
     paper_div.addEventListener('click', () => game("p"));
 
     scissors_div.addEventListener('click', () => game("s"));
+
+    lizard_div.addEventListener('click', () => game("l"));
+    spock_div.addEventListener('click', () => game("sp"));
 
     // choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
 }
