@@ -114,36 +114,42 @@ function game(userChoice) {
     // get computer choice
     const computerChoice = getComputerChoice();
 
-    console.log(`User: ${userChoice}, Comp: ${computerChoice.choice}`);
 
     // Compare user and computer
-    switch (computerChoice) {
-        case computerChoice.losesTo === userChoice:
-            win(userChoice, computerChoice.choice);
-            break;
-        case computerChoice.beats === userChoice:
-            lose(userChoice, computerChoice.choice);
-            break;
-        default:
-            draw(userChoice, computerChoice.choice);
-            break;
+    // switch (computerChoice) {
+    //     case computerChoice.losesTo === userChoice:
+    //         win(userChoice, computerChoice.choice);
+    //         break;
+    //     case computerChoice.beats === userChoice:
+    //         lose(userChoice, computerChoice.choice);
+    //         break;
+    //     default:
+    //         draw(userChoice, computerChoice.choice);
+    //         break;
+    // }
+    if (userChoice === computerChoice.losesTo) {
+        win(userChoice, computerChoice.choice);
+    } else if (userChoice === computerChoice.beats) {
+        lose(userChoice, computerChoice.choice);
+    } else {
+        draw(userChoice, computerChoice.choice);
     }
 }
 
 // Add main function (encompases all)
 function main() {
     //Add event listeners
-    // rock_div.addEventListener('click', () => game("r"));
+    rock_div.addEventListener('click', () => game("r"));
 
-    // paper_div.addEventListener('click', () => game("p"));
+    paper_div.addEventListener('click', () => game("p"));
 
-    // scissors_div.addEventListener('click', () => game("s"));
+    scissors_div.addEventListener('click', () => game("s"));
 
-    choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
+    // choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
 }
 
-// main();
+main();
 
-document.addEventListener('DOMContentLoaded', () => {
-    choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
+// });
