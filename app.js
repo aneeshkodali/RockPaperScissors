@@ -148,22 +148,30 @@ function game(userChoice) {
 }
 
 // Add main function (encompases all)
-function main() {
-    //Add event listeners
-    rock_div.addEventListener('click', () => game("r"));
+// function main() {
+//Add event listeners
+// rock_div.addEventListener('click', () => game("r"));
 
-    paper_div.addEventListener('click', () => game("p"));
+// paper_div.addEventListener('click', () => game("p"));
 
-    scissors_div.addEventListener('click', () => game("s"));
+// scissors_div.addEventListener('click', () => game("s"));
 
-    lizard_div.addEventListener('click', () => game("l"));
-    spock_div.addEventListener('click', () => game("sp"));
+// lizard_div.addEventListener('click', () => game("l"));
+// spock_div.addEventListener('click', () => game("sp"));
 
-    // choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
-}
-
-main();
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
+// choices_div.addEventListener('click', (event) => game(event.target.parentNode.id));
+// choices_div.addEventListener('click', (event) => {
+//     const input = event.target.id;
+//     input !== "choices" && game(input);
 // });
+
+// }
+
+// main();
+
+document.addEventListener('DOMContentLoaded', () => {
+    choices_div.addEventListener('click', (event) => {
+        const input = event.target.id;
+        input !== "choices" && game(input);
+    });
+});
